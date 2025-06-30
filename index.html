@@ -18,29 +18,14 @@
         .material-shapes {
             position: relative;
             overflow: hidden;
-            border-radius: 2rem; /* More rounded corners */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .material-shapes::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: -20%;
-            width: 140%;
-            height: 140%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.2) 100%);
-            transform: rotate(45deg);
-            z-index: 0;
-            opacity: 0.1;
+            border-radius: 8px; /* Consistent 8px corner radius */
+            /* Removed box-shadow */
         }
         .hero-section {
             background-color: #FFCDD2; /* Lighter pink for hero */
-            padding-bottom: 8rem; /* Extra padding to push content up */
+            padding-bottom: 4rem; /* Adjusted padding */
             border-bottom-left-radius: 4rem; /* Curved bottom */
             border-bottom-right-radius: 4rem; /* Curved bottom */
-        }
-        .app-card {
-            background-color: #ffffff; /* White background for app cards */
         }
         .download-button {
             background-color: #E91E63; /* Deep pink for download button */
@@ -48,33 +33,76 @@
             border-radius: 9999px; /* Fully rounded */
             padding: 0.75rem 2rem;
             font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
-        .download-button:hover {
-            background-color: #C2185B; /* Darker pink on hover */
         }
 
-        /* Responsive adjustments for smaller screens */
+        /* Carousel specific styles */
+        .carousel-container {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        .carousel-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+        }
+        .carousel-item {
+            flex: 0 0 100%; /* Show only one item per screen */
+            scroll-snap-align: center; /* Snap to center for better experience */
+            padding: 0 1rem; /* Add padding to sides for visual separation */
+            box-sizing: border-box; /* Include padding in element's total width */
+        }
+        /* Make the download button full width inside carousel items */
+        .carousel-item .download-button {
+            width: 100%;
+            padding-left: 1rem; /* Adjust padding due to full width */
+            padding-right: 1rem; /* Adjust padding due to full width */
+        }
+
+
+        /* Pagination dots style - Smaller */
+        .carousel-pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem; /* Slightly smaller margin */
+            margin-bottom: 2rem;
+        }
+        .dot {
+            height: 8px; /* Smaller dot size */
+            width: 8px;  /* Smaller dot size */
+            margin: 0 4px; /* Slightly smaller margin between dots */
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .dot.active {
+            background-color: #717171;
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 767px) {
             .hero-section {
-                padding-bottom: 6rem; /* Less padding on small screens */
-                border-bottom-left-radius: 2rem; /* Smaller curve for mobile */
-                border-bottom-right-radius: 2rem; /* Smaller curve for mobile */
+                padding-bottom: 3rem;
+                border-bottom-left-radius: 2rem;
+                border-bottom-right-radius: 2rem;
             }
             .hero-section h1 {
-                font-size: 3rem; /* Smaller heading on mobile */
+                font-size: 2.5rem; /* Smaller heading on mobile */
             }
             .hero-section p {
-                font-size: 1rem; /* Smaller text on mobile */
+                font-size: 0.9rem; /* Smaller text on mobile */
             }
             .app-card .material-icons {
-                font-size: 5rem; /* Smaller icons on mobile */
+                font-size: 4rem; /* Smaller icons on mobile */
             }
             .app-card h3 {
-                font-size: 2.5rem; /* Smaller app titles on mobile */
+                font-size: 2rem; /* Smaller app titles on mobile */
             }
             .app-card p {
-                font-size: 0.9rem; /* Smaller app descriptions on mobile */
+                font-size: 0.8rem; /* Smaller app descriptions on mobile */
+            }
+            .carousel-item {
+                padding: 0 0.5rem; /* Slightly less padding on very small screens */
             }
         }
     </style>
@@ -87,14 +115,14 @@
             <span class="material-icons text-purple-700 text-3xl md:text-4xl">bolt</span> <!-- Bolt icon for Storm App -->
             <span class="text-purple-900 text-xl md:text-2xl font-bold">Storm App</span>
         </div>
-        <!-- Mobile Menu Button -->
+        <!-- Mobile Menu Button (functionality not implemented, but present for UI consistency) -->
         <button class="md:hidden text-purple-700 p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500">
             <span class="material-icons text-3xl">menu</span>
         </button>
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex space-x-8">
-            <a href="#" class="text-purple-700 hover:text-purple-900 font-medium">Home</a>
-            <a href="#" class="text-purple-700 hover:text-purple-900 font-medium">Apps</a>
+            <a href="index.html" class="text-purple-700 hover:text-purple-900 font-medium">Home</a>
+            <a href="apps.html" class="text-purple-700 hover:text-purple-900 font-medium">Apps</a>
             <a href="#" class="text-purple-700 hover:text-purple-900 font-medium">About</a>
             <a href="#" class="text-purple-700 hover:text-purple-900 font-medium">Contact</a>
         </nav>
@@ -103,102 +131,139 @@
     <!-- Hero Section -->
     <section class="hero-section bg-pink-200 text-center py-12 md:py-16 relative overflow-hidden">
         <div class="container mx-auto px-4 relative z-10">
-            <h1 class="text-4xl md:text-6xl font-bold text-purple-900 leading-tight mb-4 animate-fade-in-up">
+            <h1 class="text-4xl md:text-6xl font-bold text-purple-900 leading-tight mb-4">
                 Innovation for Android Developers
             </h1>
-            <p class="text-base md:text-xl text-purple-800 mb-6 md:mb-8 max-w-2xl mx-auto animate-fade-in-up delay-100">
+            <p class="text-base md:text-xl text-purple-800 mb-6 md:mb-8 max-w-2xl mx-auto">
                 Crafting cutting-edge Android applications with powerful tools for efficiency and creativity.
             </p>
-            <button class="download-button inline-flex items-center justify-center animate-fade-in-up delay-200">
-                <span class="material-icons mr-2">download</span>
-                Download Our Apps
-            </button>
+            <a href="apps.html" class="download-button inline-flex items-center justify-center">
+                <span class="material-icons mr-2">visibility</span>
+                View Our Apps
+            </a>
         </div>
-        <!-- Abstract Shapes for background -->
+        <!-- Abstract Shapes for background (no animations) -->
         <div class="absolute inset-0 z-0">
-            <div class="absolute top-1/4 left-1/4 w-32 h-32 md:w-40 md:h-40 bg-pink-400 rounded-full opacity-30 animate-pulse"></div>
-            <div class="absolute bottom-1/3 right-1/3 w-48 h-48 md:w-60 md:h-60 bg-purple-400 rounded-lg transform rotate-45 opacity-20 animate-pulse delay-100"></div>
-            <div class="absolute top-1/2 left-1/2 w-24 h-24 md:w-32 md:h-32 bg-indigo-400 rounded-full opacity-20 animate-pulse delay-200"></div>
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 md:w-40 md:h-40 bg-pink-400 rounded-full opacity-30"></div>
+            <div class="absolute bottom-1/3 right-1/3 w-48 h-48 md:w-60 md:h-60 bg-purple-400 rounded-lg transform rotate-45 opacity-20"></div>
+            <div class="absolute top-1/2 left-1/2 w-24 h-24 md:w-32 md:h-32 bg-indigo-400 rounded-full opacity-20"></div>
         </div>
     </section>
 
-    <!-- Featured Apps Section -->
-    <section class="container mx-auto px-4 -mt-24 md:-mt-32 relative z-20 pb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-purple-900 text-center mb-8 md:mb-12 pt-12 md:pt-16">Our Featured Apps</h2>
+    <!-- Featured Apps Section (Carousel) -->
+    <section class="py-12 px-0">
+        <h2 class="text-3xl md:text-4xl font-bold text-purple-900 text-center mb-8 md:mb-12">Our Featured Apps</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div id="appCarousel" class="carousel-container flex pb-4">
 
             <!-- SlideS App Card -->
-            <div class="material-shapes bg-pink-300 p-6 md:p-8 pt-10 md:pt-12 text-center relative overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <span class="absolute top-3 left-3 text-xs md:text-sm font-semibold text-purple-800 bg-white bg-opacity-70 px-2 py-0.5 md:px-3 md:py-1 rounded-full">FEATURED</span>
-                <div class="relative z-10">
-                    <h3 class="text-3xl md:text-4xl font-bold text-purple-900 mb-2">SlideS</h3>
-                    <p class="text-purple-800 mb-4 md:mb-6 text-sm md:text-lg">
-                        JSON to slides rendering app powered by AI. Transform data into stunning presentations effortlessly.
-                    </p>
-                    <button class="download-button inline-flex items-center justify-center text-sm md:text-base">
-                        <span class="material-icons mr-2 text-base md:text-lg">download</span>
-                        Download
-                    </button>
-                    <div class="mt-6 md:mt-8 relative w-full aspect-video bg-purple-200 rounded-xl overflow-hidden flex items-center justify-center">
-                        <!-- Placeholder for Slides UI - example a simple presentation slide icon -->
-                        <span class="material-icons text-purple-700 text-6xl md:text-7xl">slideshow</span>
+            <div class="carousel-item">
+                <div class="material-shapes bg-pink-300 p-6 md:p-8 pt-10 md:pt-12 text-center relative mx-auto max-w-md">
+                    <span class="absolute top-3 left-3 text-xs md:text-sm font-semibold text-purple-800 bg-white bg-opacity-70 px-2 py-0.5 md:px-3 md:py-1 rounded-full">FEATURED</span>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl md:text-4xl font-bold text-purple-900 mb-2">SlideS</h3>
+                        <p class="text-purple-800 mb-4 md:mb-6 text-sm md:text-lg">
+                            JSON to slides rendering app powered by AI. Transform data into stunning presentations effortlessly.
+                        </p>
+                        <a href="apps.html#slides" class="download-button inline-flex items-center justify-center text-sm md:text-base">
+                            <span class="material-icons mr-2 text-base md:text-lg">download</span>
+                            Download
+                        </a>
+                        <div class="mt-6 md:mt-8 relative w-full aspect-video bg-purple-200 rounded-xl overflow-hidden flex items-center justify-center">
+                            <!-- Placeholder for Slides UI - example a simple presentation slide icon -->
+                            <span class="material-icons text-purple-700 text-6xl md:text-7xl">slideshow</span>
+                            <!-- Placeholder image for Slides - similar to the screenshot for visual consistency -->
+                            <img src="https://placehold.co/400x200/F0F0F0/000000?text=Slides+App+UI" alt="Slides App UI Placeholder" class="absolute inset-0 w-full h-full object-cover opacity-0">
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Scrapy App Card -->
-            <div class="material-shapes bg-indigo-300 p-6 md:p-8 pt-10 md:pt-12 text-center relative overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <span class="absolute top-3 left-3 text-xs md:text-sm font-semibold text-purple-800 bg-white bg-opacity-70 px-2 py-0.5 md:px-3 md:py-1 rounded-full">FEATURED</span>
-                <div class="relative z-10">
-                    <h3 class="text-3xl md:text-4xl font-bold text-purple-900 mb-2">Scrapy</h3>
-                    <p class="text-purple-800 mb-4 md:mb-6 text-sm md:text-lg">
-                        Advanced powerful web scraping app. Extract data from the web with precision and speed.
-                    </p>
-                    <button class="download-button inline-flex items-center justify-center text-sm md:text-base">
-                        <span class="material-icons mr-2 text-base md:text-lg">download</span>
-                        Download
-                    </button>
-                    <div class="mt-6 md:mt-8 relative w-full aspect-video bg-purple-200 rounded-xl overflow-hidden flex items-center justify-center">
-                        <!-- Placeholder for Scrapy UI - example a spiderweb icon -->
-                        <span class="material-icons text-purple-700 text-6xl md:text-7xl">data_object</span>
+            <div class="carousel-item">
+                <div class="material-shapes bg-indigo-300 p-6 md:p-8 pt-10 md:pt-12 text-center relative mx-auto max-w-md">
+                    <span class="absolute top-3 left-3 text-xs md:text-sm font-semibold text-purple-800 bg-white bg-opacity-70 px-2 py-0.5 md:px-3 md:py-1 rounded-full">FEATURED</span>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl md:text-4xl font-bold text-purple-900 mb-2">Scrapy</h3>
+                        <p class="text-purple-800 mb-4 md:mb-6 text-sm md:text-lg">
+                            Advanced powerful web scraping app. Extract data from the web with precision and speed.
+                        </p>
+                        <a href="apps.html#scrapy" class="download-button inline-flex items-center justify-center text-sm md:text-base">
+                            <span class="material-icons mr-2 text-base md:text-lg">download</span>
+                            Download
+                        </a>
+                        <div class="mt-6 md:mt-8 relative w-full aspect-video bg-purple-200 rounded-xl overflow-hidden flex items-center justify-center">
+                            <!-- Placeholder for Scrapy UI - example a spiderweb icon -->
+                            <span class="material-icons text-purple-700 text-6xl md:text-7xl">data_object</span>
+                            <!-- Placeholder image for Scrapy -->
+                            <img src="https://placehold.co/400x200/F0F0F0/000000?text=Scrapy+App+UI" alt="Scrapy App UI Placeholder" class="absolute inset-0 w-full h-full object-cover opacity-0">
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- TTS Render App Card -->
-            <div class="material-shapes bg-purple-300 p-6 md:p-8 pt-10 md:pt-12 text-center relative overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <span class="absolute top-3 left-3 text-xs md:text-sm font-semibold text-purple-800 bg-white bg-opacity-70 px-2 py-0.5 md:px-3 md:py-1 rounded-full">FEATURED</span>
-                <div class="relative z-10">
-                    <h3 class="text-3xl md:text-4xl font-bold text-purple-900 mb-2">TTS Render</h3>
-                    <p class="text-purple-800 mb-4 md:mb-6 text-sm md:text-lg">
-                        Advanced offline on-device text to speech renderer app. High-quality speech generation, no internet needed.
-                    </p>
-                    <button class="download-button inline-flex items-center justify-center text-sm md:text-base">
-                        <span class="material-icons mr-2 text-base md:text-lg">download</span>
-                        Download
-                    </button>
-                    <div class="mt-6 md:mt-8 relative w-full aspect-video bg-purple-200 rounded-xl overflow-hidden flex items-center justify-center">
-                        <!-- Placeholder for TTS Render UI - example a volume icon -->
-                        <span class="material-icons text-purple-700 text-6xl md:text-7xl">volume_up</span>
+            <div class="carousel-item">
+                <div class="material-shapes bg-purple-300 p-6 md:p-8 pt-10 md:pt-12 text-center relative mx-auto max-w-md">
+                    <span class="absolute top-3 left-3 text-xs md:text-sm font-semibold text-purple-800 bg-white bg-opacity-70 px-2 py-0.5 md:px-3 md:py-1 rounded-full">FEATURED</span>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl md:text-4xl font-bold text-purple-900 mb-2">TTS Render</h3>
+                        <p class="text-purple-800 mb-4 md:mb-6 text-sm md:text-lg">
+                            Advanced offline on-device text to speech renderer app. High-quality speech generation, no internet needed.
+                        </p>
+                        <a href="apps.html#ttsrender" class="download-button inline-flex items-center justify-center text-sm md:text-base">
+                            <span class="material-icons mr-2 text-base md:text-lg">download</span>
+                            Download
+                        </a>
+                        <div class="mt-6 md:mt-8 relative w-full aspect-video bg-purple-200 rounded-xl overflow-hidden flex items-center justify-center">
+                            <!-- Placeholder for TTS Render UI - example a volume icon -->
+                            <span class="material-icons text-purple-700 text-6xl md:text-7xl">volume_up</span>
+                            <!-- Placeholder image for TTS Render -->
+                            <img src="https://placehold.co/400x200/F0F0F0/000000?text=TTS+Render+UI" alt="TTS Render App UI Placeholder" class="absolute inset-0 w-full h-full object-cover opacity-0">
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
+
+        <!-- Pagination Dots -->
+        <div class="carousel-pagination" id="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-purple-900 text-white py-6 md:py-8 text-center">
-        <div class="container mx-auto px-4">
-            <p class="text-sm md:text-base">&copy; 2025 Storm App. All rights reserved.</p>
-            <div class="flex justify-center space-x-4 md:space-x-6 mt-3 md:mt-4">
-                <a href="#" class="text-white hover:text-pink-300 text-lg md:text-xl"><span class="material-icons">email</span></a>
-                <a href="#" class="text-white hover:text-pink-300 text-lg md:text-xl"><span class="material-icons">code</span></a>
-                <!-- Add more social links/icons as needed -->
-            </div>
-        </div>
-    </footer>
+    <script>
+        const carousel = document.getElementById('appCarousel');
+        const dotsContainer = document.getElementById('carousel-dots');
+        const dots = dotsContainer.querySelectorAll('.dot');
+        const appCards = carousel.querySelectorAll('.carousel-item');
+
+        // Function to update active dot
+        function updateDots() {
+            const scrollLeft = carousel.scrollLeft;
+            const itemWidth = appCards[0].offsetWidth;
+
+            // Calculate the current item index based on scroll position
+            const currentItemIndex = Math.round(scrollLeft / itemWidth);
+
+            dots.forEach((dot, index) => {
+                if (index === currentItemIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Add scroll event listener to update dots
+        carousel.addEventListener('scroll', updateDots);
+
+        // Initial update when page loads
+        updateDots();
+    </script>
 
 </body>
 </html>

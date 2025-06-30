@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapy - Storm App</title>
+    <!-- Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0F172A;
+        }
+        
+        .app-icon {
+            border-radius: 22%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .screenshot-container {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .screenshot-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .screenshot-item {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            margin-right: 1rem;
+        }
+        
+        .screenshot-item:last-child {
+            margin-right: 0;
+        }
+        
+        .install-button {
+            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .install-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+        
+        .section-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        .tag {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .app-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .app-icon {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-slate-900 py-4 px-4 md:px-12 flex justify-between items-center relative z-10">
+        <div class="flex items-center space-x-4">
+            <button onclick="goBack()" class="text-blue-400 hover:text-blue-200 p-2 rounded-full hover:bg-slate-800 transition-colors">
+                <span class="material-icons text-2xl">arrow_back</span>
+            </button>
+            <div class="flex items-center space-x-2">
+                <span class="material-icons text-blue-400 text-3xl md:text-4xl">bolt</span>
+                <span class="text-blue-200 text-xl md:text-2xl font-bold">Storm App</span>
+            </div>
+        </div>
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-8">
+            <a href="#" class="text-blue-400 hover:text-blue-200 font-medium">Home</a>
+            <a href="#" class="text-blue-400 hover:text-blue-200 font-medium">Apps</a>
+            <a href="#" class="text-blue-400 hover:text-blue-200 font-medium">About</a>
+            <a href="#" class="text-blue-400 hover:text-blue-200 font-medium">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-6xl">
+        
+        <!-- App Header Section -->
+        <section class="app-header flex flex-col md:flex-row items-start md:items-center mb-8 bg-slate-800/50 p-6 md:p-8 rounded-2xl backdrop-blur-sm">
+            <div class="app-icon w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-4 md:mb-0 md:mr-8 flex-shrink-0">
+                <span class="material-icons text-white text-4xl md:text-5xl">data_object</span>
+            </div>
+            
+            <div class="flex-1 text-center md:text-left">
+                <h1 class="text-white text-3xl md:text-4xl font-bold mb-2">Scrapy</h1>
+                <p class="text-blue-200 text-lg mb-4">Advanced powerful web scraping app</p>
+                
+                <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
+                    <span class="tag text-blue-200 px-3 py-1 rounded-full text-sm">Developer Tools</span>
+                    <span class="tag text-blue-200 px-3 py-1 rounded-full text-sm">Web Scraping</span>
+                    <span class="tag text-blue-200 px-3 py-1 rounded-full text-sm">Data Mining</span>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 items-center md:items-start">
+                    <button class="install-button text-white px-8 py-3 rounded-full font-semibold text-lg flex items-center space-x-2 min-w-[160px] justify-center">
+                        <span class="material-icons">download</span>
+                        <span>Install</span>
+                    </button>
+                    
+                    <div class="flex items-center space-x-6 text-slate-300">
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">4.6</div>
+                            <div class="text-xs">★★★★★</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">25K+</div>
+                            <div class="text-xs">Downloads</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">22MB</div>
+                            <div class="text-xs">Size</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Section -->
+        <section class="mb-8">
+            <h2 class="text-white text-2xl font-bold mb-6 flex items-center">
+                <span class="material-icons mr-2 text-blue-400">photo_library</span>
+                Screenshots
+            </h2>
+            
+            <div class="screenshot-container flex overflow-x-auto pb-4">
+                <div class="screenshot-item">
+                    <div class="w-48 h-96 bg-slate-700 rounded-2xl flex items-center justify-center border border-slate-600">
+                        <div class="text-center text-slate-400">
+                            <span class="material-icons text-6xl mb-2">web</span>
+                            <p class="text-sm">Web Inspector</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screenshot-item">
+                    <div class="w-48 h-96 bg-slate-700 rounded-2xl flex items-center justify-center border border-slate-600">
+                        <div class="text-center text-slate-400">
+                            <span class="material-icons text-6xl mb-2">code</span>
+                            <p class="text-sm">Script Editor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screenshot-item">
+                    <div class="w-48 h-96 bg-slate-700 rounded-2xl flex items-center justify-center border border-slate-600">
+                        <div class="text-center text-slate-400">
+                            <span class="material-icons text-6xl mb-2">table_view</span>
+                            <p class="text-sm">Data Results</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screenshot-item">
+                    <div class="w-48 h-96 bg-slate-700 rounded-2xl flex items-center justify-center border border-slate-600">
+                        <div class="text-center text-slate-400">
+                            <span class="material-icons text-6xl mb-2">schedule</span>
+                            <p class="text-sm">Scheduler</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screenshot-item">
+                    <div class="w-48 h-96 bg-slate-700 rounded-2xl flex items-center justify-center border border-slate-600">
+                        <div class="text-center text-slate-400">
+                            <span class="material-icons text-6xl mb-2">download</span>
+                            <p class="text-sm">Export Data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Description Section -->
+        <section class="section-card rounded-2xl p-6 md:p-8 mb-8">
+            <h2 class="text-white text-2xl font-bold mb-6 flex items-center">
+                <span class="material-icons mr-2 text-blue-400">description</span>
+                About this app
+            </h2>
+            
+            <div class="text-slate-300 space-y-4 leading-relaxed">
+                <p>
+                    Scrapy is the ultimate web scraping tool for developers, researchers, and data analysts. Extract data from websites 
+                    with precision and speed using our advanced scraping engine built for the mobile platform.
+                </p>
+                
+                <p>
+                    <strong class="text-white">Key Features:</strong>
+                </p>
+                
+                <ul class="list-disc list-inside space-y-2 ml-4">
+                    <li>🕷️ Advanced web scraping engine with JavaScript support</li>
+                    <li>🎯 Visual element selector for easy targeting</li>
+                    <li>📊 Real-time data extraction and preview</li>
+                    <li>⚡ Multi-threaded scraping for maximum performance</li>
+                    <li>🔒 Built-in proxy support and rotation</li>
+                    <li>📱 Mobile-optimized interface with dark theme</li>
+                    <li>💾 Multiple export formats (JSON, CSV, XML, Excel)</li>
+                    <li>⏰ Scheduled scraping with background processing</li>
+                    <li>🛡️ CAPTCHA handling and bot detection bypass</li>
+                    <li>📋 Template system for common scraping patterns</li>
+                </ul>
+                
+                <p>
+                    Perfect for market research, price monitoring, lead generation, content aggregation, and competitive analysis. 
+                    Scrapy handles everything from simple data extraction to complex crawling workflows.
+                </p>
+            </div>
+        </section>
+
+        <!-- What's New Section -->
+        <section class="section-card rounded-2xl p-6 md:p-8 mb-8">
+            <h2 class="text-white text-2xl font-bold mb-6 flex items-center">
+                <span class="material-icons mr-2 text-blue-400">new_releases</span>
+                What's new
+            </h2>
+            
+            <div class="text-slate-300 space-y-3">
+                <div class="flex items-start space-x-3">
+                    <span class="material-icons text-green-400 text-sm mt-1">check_circle</span>
+                    <span>Improved JavaScript rendering engine</span>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="material-icons text-green-400 text-sm mt-1">check_circle</span>
+                    <span>Enhanced CAPTCHA solving capabilities</span>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="material-icons text-green-400 text-sm mt-1">check_circle</span>
+                    <span>New visual selector tool with XPath support</span>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="material-icons text-green-400 text-sm mt-1">check_circle</span>
+                    <span>Added cloud sync for scraping templates</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Info Section -->
+        <section class="section-card rounded-2xl p-6 md:p-8">
+            <h2 class="text-white text-2xl font-bold mb-6 flex items-center">
+                <span class="material-icons mr-2 text-blue-400">info</span>
+                App info
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-300">
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <span>Version</span>
+                        <span class="text-white">3.2.1</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Updated</span>
+                        <span class="text-white">Dec 10, 2024</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Size</span>
+                        <span class="text-white">22.7 MB</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Downloads</span>
+                        <span class="text-white">25,000+</span>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <span>Developer</span>
+                        <span class="text-white">Storm App Studio</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Category</span>
+                        <span class="text-white">Developer Tools</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Requires Android</span>
+                        <span class="text-white">8.0+</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Content Rating</span>
+                        <span class="text-white">Everyone</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Install Button (Mobile) -->
+    <div class="fixed bottom-6 left-6 right-6 md:hidden">
+        <button class="install-button w-full text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center justify-center space-x-2">
+            <span class="material-icons">download</span>
+            <span>Install</span>
+        </button>
+    </div>
+
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+        
+        // Go back function
+        function goBack() {
+            if (document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Smooth scrolling for screenshot container
+        const screenshotContainer = document.querySelector('.screenshot-container');
+        let isScrolling = false;
+
+        screenshotContainer.addEventListener('wheel', (e) => {
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                e.preventDefault();
+                screenshotContainer.scrollLeft += e.deltaX;
+            }
+        });
+
+        // Add click functionality to install buttons
+        document.querySelectorAll('.install-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Simulate download initiation
+                button.innerHTML = '<span class="material-icons animate-spin">refresh</span><span>Installing...</span>';
+                
+                setTimeout(() => {
+                    button.innerHTML = '<span class="material-icons">check</span><span>Installed</span>';
+                    button.classList.add('bg-green-600');
+                    button.classList.remove('install-button');
+                }, 2000);
+            });
+        });
+    </script>
+
+</body>
+</html>

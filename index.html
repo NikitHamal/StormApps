@@ -18,19 +18,18 @@
         .material-shapes {
             position: relative;
             overflow: hidden;
-            border-radius: 8px; /* Consistent 8px corner radius */
-            /* Removed box-shadow */
+            border-radius: 12px; /* Consistent 8px corner radius */
         }
         .hero-section {
             background-color: #FFCDD2; /* Lighter pink for hero */
             padding-bottom: 4rem; /* Adjusted padding */
-            border-bottom-left-radius: 4rem; /* Curved bottom */
-            border-bottom-right-radius: 4rem; /* Curved bottom */
+            border-bottom-left-radius: 16px; /* Changed from 4rem to 16px */
+            border-bottom-right-radius: 16px; /* Changed from 4rem to 16px */
         }
         .download-button {
             background-color: #E91E63; /* Deep pink for download button */
             color: white;
-            border-radius: 9999px; /* Fully rounded */
+            border-radius: 60px; /* Fully rounded */
             padding: 0.75rem 2rem;
             font-weight: 500;
         }
@@ -83,8 +82,8 @@
         @media (max-width: 767px) {
             .hero-section {
                 padding-bottom: 3rem;
-                border-bottom-left-radius: 2rem;
-                border-bottom-right-radius: 2rem;
+                border-bottom-left-radius: 16px; /* Consistent 16px for mobile */
+                border-bottom-right-radius: 16px; /* Consistent 16px for mobile */
             }
             .hero-section h1 {
                 font-size: 2.5rem; /* Smaller heading on mobile */
@@ -121,8 +120,8 @@
         </button>
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex space-x-8">
-            <a href="index.html" class="text-purple-700 hover:text-purple-900 font-medium">Home</a>
-            <a href="apps.html" class="text-purple-700 hover:text-purple-900 font-medium">Apps</a>
+            <a href="#" class="text-purple-700 hover:text-purple-900 font-medium">Home</a>
+            <a href="#" class="text-purple-700 hover:text-purple-900 font-medium">Apps</a> <!-- Removed href="apps.html" -->
             <a href="#" class="text-purple-700 hover:text-purple-900 font-medium">About</a>
             <a href="#" class="text-purple-700 hover:text-purple-900 font-medium">Contact</a>
         </nav>
@@ -137,10 +136,7 @@
             <p class="text-base md:text-xl text-purple-800 mb-6 md:mb-8 max-w-2xl mx-auto">
                 Crafting cutting-edge Android applications with powerful tools for efficiency and creativity.
             </p>
-            <a href="apps.html" class="download-button inline-flex items-center justify-center">
-                <span class="material-icons mr-2">visibility</span>
-                View Our Apps
-            </a>
+            <!-- Removed "View Our Apps" button entirely -->
         </div>
         <!-- Abstract Shapes for background (no animations) -->
         <div class="absolute inset-0 z-0">
@@ -165,7 +161,7 @@
                         <p class="text-purple-800 mb-4 md:mb-6 text-sm md:text-lg">
                             JSON to slides rendering app powered by AI. Transform data into stunning presentations effortlessly.
                         </p>
-                        <a href="apps.html#slides" class="download-button inline-flex items-center justify-center text-sm md:text-base">
+                        <a href="#" class="download-button inline-flex items-center justify-center text-sm md:text-base"> <!-- Removed href="apps.html#slides" -->
                             <span class="material-icons mr-2 text-base md:text-lg">download</span>
                             Download
                         </a>
@@ -188,7 +184,7 @@
                         <p class="text-purple-800 mb-4 md:mb-6 text-sm md:text-lg">
                             Advanced powerful web scraping app. Extract data from the web with precision and speed.
                         </p>
-                        <a href="apps.html#scrapy" class="download-button inline-flex items-center justify-center text-sm md:text-base">
+                        <a href="#" class="download-button inline-flex items-center justify-center text-sm md:text-base"> <!-- Removed href="apps.html#scrapy" -->
                             <span class="material-icons mr-2 text-base md:text-lg">download</span>
                             Download
                         </a>
@@ -211,7 +207,7 @@
                         <p class="text-purple-800 mb-4 md:mb-6 text-sm md:text-lg">
                             Advanced offline on-device text to speech renderer app. High-quality speech generation, no internet needed.
                         </p>
-                        <a href="apps.html#ttsrender" class="download-button inline-flex items-center justify-center text-sm md:text-base">
+                        <a href="#" class="download-button inline-flex items-center justify-center text-sm md:text-base"> <!-- Removed href="apps.html#ttsrender" -->
                             <span class="material-icons mr-2 text-base md:text-lg">download</span>
                             Download
                         </a>
@@ -266,4 +262,5 @@
     </script>
 
 </body>
-</html>
+                        </html>
+                
